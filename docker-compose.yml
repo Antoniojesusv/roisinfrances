@@ -1,0 +1,29 @@
+version: "3.7"
+
+services:
+  nginx:
+    container_name: nginx
+    build:
+      context: ./.docker/nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - php-fpm
+    restart: unless-stopped
+    volumes:
+      - ./:/var/www
+      - ./logs/nginx:/var/log/nginx/
+  
+  php-fpm:
+    container_name: php-fpm
+    build:
+      context: ./.docker/php-fpm
+      args:
+        TIMEZONE: Europe/Madrid
+    restart: unless-stopped
+    environment:
+      - APP_ENV=${APP_ENV}
+      - APP_SECRET=${APP_SECRET}
+    volumes:
+      - ./:/var/www
