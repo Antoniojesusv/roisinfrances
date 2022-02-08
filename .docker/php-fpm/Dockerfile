@@ -21,6 +21,12 @@ RUN apt-get update && apt-get install -y \
     acl \
     && echo 'alias sf="php bin/console"' >> ~/.bashrc
 
+RUN pear config-set php_ini ${PHP_ROOT_DIR}/php/php.ini
+
+RUN pecl install xdebug && docker-php-ext-enable xdebug
+
+COPY xdebug.ini /usr/local/etc/php/conf.d/
+
 RUN docker-php-ext-configure gd --with-jpeg --with-freetype 
 
 RUN docker-php-ext-install \
