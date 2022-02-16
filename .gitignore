@@ -14,10 +14,6 @@
 /config/jwt/*.pem
 ###< lexik/jwt-authentication-bundle ###
 
-###> Rest client vscode extension ###
-*-test.http
-###< Rest client vscode extension ###
-
 ###> Mysql docker container ###
 /data/
 ###< Mysql docker container ###
@@ -25,7 +21,11 @@
 ###> Zip lambda service ###
 /tools/
 /.vscode/
+/.php-cs-fixer.cache
+*-test.http
+
 ###< Zip lambda service ###
+
 ###> squizlabs/php_codesniffer ###
 /.phpcs-cache
 /phpcs.xml
